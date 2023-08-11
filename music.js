@@ -16,7 +16,3 @@ const musicList = [
   new Music("Olduramadım", "Özkan Uğur", "2.jpg", "2.mp3"),
   new Music("Zaferlerim", "Demir Demirkıran", "3.jpg", "3.mp3"),
 ];
-
-// for (music of musicList) {
-//   console.log(music.getName());
-// }
