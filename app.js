@@ -17,10 +17,10 @@ console.log(music.getName());
 
 window.addEventListener("load", () => {
   let music = player.getMusic();
-  display(music);
+  displayMusic(music);
 });
 
-let display = (music) => {
+let displayMusic = (music) => {
   title.innerHTML = music.getName();
   singer.innerHTML = music.singer;
   image.src = "img/" + music.img;
@@ -28,5 +28,37 @@ let display = (music) => {
 };
 
 play.addEventListener("click", () => {
-  audio.play();
+  const isMusicPlay = container.classList.contains("playing");
+  isMusicPlay ? pauseMusic() : playMusic();
 });
+
+const pauseMusic = () => {
+  container.classList.remove("playing");
+  audio.pause();
+};
+const playMusic = () => {
+  container.classList.add("playing");
+  audio.play();
+};
+
+prev.addEventListener("click", () => {
+  prevMusic();
+});
+
+next.addEventListener("click", () => {
+  nextMusic();
+});
+
+const prevMusic = () => {
+  player.prev();
+  let music = player.getMusic();
+  displayMusic(music);
+  playMusic();
+};
+
+const nextMusic = () => {
+  player.next();
+  let music = player.getMusic();
+  displayMusic(music);
+  playMusic();
+};

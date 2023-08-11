@@ -16,7 +16,7 @@ class MusicPlayer {
     }
   }
   /// 0 a eşit olmadığı sürece
-  previous() {
+  prev() {
     if (this.index != 0) {
       this.index--;
     } else {
