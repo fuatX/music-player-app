@@ -3,3 +3,21 @@
   color: purple;
   margin-right: 20px;
 }
+
+.container {
+  width: 350px;
+}
+
+#progress {
+  margin-bottom: 20px;
+}
+#progress .times {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#progress-bar,
+#music-image {
+  width: 100%;
+}
