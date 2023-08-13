@@ -11,7 +11,7 @@
 #progress {
   margin-bottom: 20px;
 }
-#progress .times {
+#progress .times,#controls,#volume-controls,#control-buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;

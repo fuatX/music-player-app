@@ -6,9 +6,12 @@ const title = document.querySelector("#music-details .title");
 const prev = document.querySelector("#controls #prev");
 const play = document.querySelector("#controls #play");
 const next = document.querySelector("#controls #next");
+const replay = document.querySelector("#replay");
 const duration = document.querySelector("#duration");
 const currentTime = document.querySelector("#current-time");
 const progressBar = document.querySelector("#progress-bar");
+const volume = document.querySelector("#volume");
+const volumeBar = document.querySelector("#volume-bar");
 
 const player = new MusicPlayer(musicList);
 
@@ -54,6 +57,34 @@ next.addEventListener("click", () => {
   nextMusic();
 });
 
+replay.addEventListener("click", () => {
+  // audio.currentTime = 0;
+  if (replay.classList == "fas fa-redo-alt") {
+    replay.classList = "fas fa-redo-alt fa-spin";
+  } else if (replay.classList == "fas fa-redo-alt fa-spin") {
+    replay.classList = "fas fa-redo-alt";
+  }
+});
+
+audio.addEventListener("ended", () => {
+  if (
+    replay.classList.contains("fa-redo-alt") &&
+    replay.classList.contains("fa-spin")
+  ) {
+    audio.currentTime = 0;
+    playMusic();
+  } else {
+    nextMusic();
+  }
+});
+/*
+const replayMusic = () => {
+  if (progressBar.value === progressBar.max) {
+    audio.currentTime = 0; // Şarkıyı başa sar
+    playMusic(); 
+  }
+};
+*/
 const prevMusic = () => {
   player.prev();
   let music = player.getMusic();
@@ -89,4 +120,31 @@ audio.addEventListener("timeupdate", () => {
 progressBar.addEventListener("input", () => {
   currentTime.textContent = calculateTime(progressBar.value);
   audio.currentTime = progressBar.value;
+});
+
+let muteState = "unmuted";
+
+volumeBar.addEventListener("input", (soundbar) => {
+  const value = soundbar.target.value;
+  audio.volume = value / 100;
+  // max min 0-1 https://www.w3schools.com/tags/av_prop_volume.asp
+  if (audio.volume === 0) {
+    volume.classList = "fa-solid fa-volume-xmark";
+  } else {
+    volume.classList = "fa-solid fa-volume-high";
+  }
+});
+
+volume.addEventListener("click", () => {
+  if (muteState === "unmuted") {
+    audio.muted = true;
+    muteState = "muted";
+    volume.classList = "fa-solid fa-volume-xmark";
+    volumeBar.value = 0;
+  } else {
+    audio.muted = false;
+    muteState = "unmuted";
+    volume.classList = "fa-solid fa-volume-high";
+    volumeBar.value = 100;
+  }
 });
