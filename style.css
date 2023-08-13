@@ -1,3 +1,10 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 #controls i {
   font-size: 30px;
   color: purple;
