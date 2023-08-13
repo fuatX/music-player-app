@@ -5,26 +5,27 @@ body {
   height: 100vh;
 }
 
-#controls i {
-  font-size: 30px;
-  color: purple;
-  margin-right: 20px;
-}
-
 .container {
-  width: 350px;
+  width: 400px;
 }
 
-#progress {
-  margin-bottom: 20px;
+#progress .times,
+.card-footer,
+#volume-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-#progress .times,#controls,#volume-controls,#control-buttons {
+
+#volume-controls i {
+  margin-right: 5px;
+}
+
+/* #progress .times,
+#controls,
+#volume-controls,
+#control-buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-#progress-bar,
-#music-image {
-  width: 100%;
-}
+} */

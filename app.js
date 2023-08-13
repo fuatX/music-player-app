@@ -40,12 +40,12 @@ play.addEventListener("click", () => {
 
 const pauseMusic = () => {
   container.classList.remove("playing");
-  play.classList = "fa-solid fa-play";
+  play.querySelector("i").classList = "fa-solid fa-play";
   audio.pause();
 };
 const playMusic = () => {
   container.classList.add("playing");
-  play.classList = "fa-solid fa-pause";
+  play.querySelector("i").classList = "fa-solid fa-pause";
   audio.play();
 };
 
@@ -59,17 +59,17 @@ next.addEventListener("click", () => {
 
 replay.addEventListener("click", () => {
   // audio.currentTime = 0;
-  if (replay.classList == "fas fa-redo-alt") {
-    replay.classList = "fas fa-redo-alt fa-spin";
-  } else if (replay.classList == "fas fa-redo-alt fa-spin") {
-    replay.classList = "fas fa-redo-alt";
+  if (replay.querySelector("i").classList == "fas fa-redo-alt") {
+    replay.querySelector("i").classList = "fas fa-redo-alt fa-spin";
+  } else if (replay.querySelector("i").classList == "fas fa-redo-alt fa-spin") {
+    replay.querySelector("i").classList = "fas fa-redo-alt";
   }
 });
 
 audio.addEventListener("ended", () => {
   if (
-    replay.classList.contains("fa-redo-alt") &&
-    replay.classList.contains("fa-spin")
+    replay.querySelector("i").classList.contains("fa-redo-alt") &&
+    replay.querySelector("i").classList.contains("fa-spin")
   ) {
     audio.currentTime = 0;
     playMusic();

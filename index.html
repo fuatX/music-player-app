@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AADzzwAA48cAAMPDAADDwwAAw8MAAOPHAAD73wAA+98AANvbAACL0QAArDsAAP//AAD//wAA"
+      rel="icon"
+      type="image/x-icon"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -9,33 +14,50 @@
     />
     <link rel="stylesheet" href="bootstrap-css.css" />
     <link rel="stylesheet" href="style.css" />
-    <title>Welcome to Music App by fuatX</title>
+    <title>Music App by fuatX</title>
   </head>
   <body>
     <div class="container">
-      <img id="music-image" src="" alt="" />
-      <audio id="audio" src=""></audio>
-      <div id="music-details">
-        <p class="title"></p>
-        <p class="singer"></p>
-      </div>
-      <div id="progress">
-        <input type="range" id="progress-bar" />
-        <div class="times">
-          <span id="current-time">0:00</span>
-          <span id="duration">0:00</span>
+      <div class="card shadow-lg rounded">
+        <img id="music-image" class="card-img-top" />
+        <audio id="audio" src=""></audio>
+        <div id="music-details" class="text-center border-bottom my-3">
+          <p class="title"></p>
+          <p class="singer"></p>
         </div>
-      </div>
-      <div id="controls">
-        <div id="control-buttons">
-          <i id="prev" class="fa-solid fa-backward-step"></i>
-          <i id="play" class="fa-solid fa-play"></i>
-          <i id="next" class="fa-solid fa-forward-step"></i>
-          <i id="replay" class="fas fa-redo-alt"></i>
+        <div class="card-body">
+          <div id="progress">
+            <input type="range" id="progress-bar" class="form-range" />
+            <div class="times">
+              <span class="badge rounded-pill bg-dark" id="current-time"
+                >0:00</span
+              >
+              <span class="badge rounded-pill bg-dark" id="duration">0:00</span>
+            </div>
+          </div>
+          <div id="controls" class="text-center">
+            <button id="prev" class="btn btn-primary rounded-circle">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button id="play" class="btn btn-primary rounded-circle btn-lg mx-2">
+              <i class="fa-solid fa-play"></i>
+            </button>
+            <button id="next" class="btn btn-primary rounded-circle">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+            <button id="replay" class="btn btn-secondary rounded-circle btn-sm ml-4">
+              <i  class="fas fa-redo-alt"></i>
+            </button>
+          </div>
         </div>
-        <div id="volume-controls">
-          <i id="volume" class="fa-solid fa-volume-high"></i>
-          <input type="range" id="volume-bar" max="100" value="100" />
+        <div class="card-footer">
+          <button class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div id="volume-controls">
+            <i id="volume" class="fa-solid fa-volume-high"></i>
+            <input type="range" id="volume-bar" max="100" value="100" class="form-range" />
+          </div>
         </div>
       </div>
     </div>
