@@ -2,6 +2,7 @@ class MusicPlayer {
   constructor(musicList) {
     this.musicList = musicList;
     this.index = 0; //1.müziğe set ettim
+    // this.lastPlayedIndex = -1;
   }
 
   getMusic() {
@@ -22,5 +23,10 @@ class MusicPlayer {
     } else {
       this.index = this.musicList.length - 1;
     }
+  }
+
+  random() {
+    const randomIndex = Math.floor(Math.random() * this.musicList.length);
+    this.index = randomIndex;
   }
 }

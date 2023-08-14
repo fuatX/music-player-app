@@ -3,6 +3,7 @@ const image = document.querySelector("#music-image");
 // const audio = document.querySelector("#audio");
 const singer = document.querySelector("#music-details .singer");
 const title = document.querySelector("#music-details .title");
+const randomSong = document.querySelector("#randomSong");
 const prev = document.querySelector("#controls #prev");
 const play = document.querySelector("#controls #play");
 const next = document.querySelector("#controls #next");
@@ -26,6 +27,7 @@ window.addEventListener("load", () => {
   let music = player.getMusic();
   displayMusic(music);
   displayMusicList(player.musicList);
+  isPlayingNow();
 });
 
 let displayMusic = (music) => {
@@ -59,6 +61,14 @@ next.addEventListener("click", () => {
   nextMusic();
 });
 
+randomSong.addEventListener("click", () => {
+  if (randomSong.querySelector("i").classList == "fa-solid fa-shuffle") {
+    randomSong.querySelector("i").classList.add("fa-beat");
+  } else {
+    randomSong.querySelector("i").classList.remove("fa-beat");
+  }
+});
+
 replay.addEventListener("click", () => {
   // audio.currentTime = 0;
   if (replay.querySelector("i").classList == "fas fa-redo-alt") {
@@ -75,8 +85,16 @@ audio.addEventListener("ended", () => {
   ) {
     audio.currentTime = 0;
     playMusic();
+    isPlayingNow();
+  } else if (randomSong.querySelector("i").classList.contains("fa-beat")) {
+    player.random();
+    let music = player.getMusic();
+    displayMusic(music);
+    playMusic();
+    isPlayingNow();
   } else {
     nextMusic();
+    isPlayingNow();
   }
 });
 /*
@@ -92,6 +110,7 @@ const prevMusic = () => {
   let music = player.getMusic();
   displayMusic(music);
   playMusic();
+  isPlayingNow();
 };
 
 const nextMusic = () => {
@@ -99,6 +118,7 @@ const nextMusic = () => {
   let music = player.getMusic();
   displayMusic(music);
   playMusic();
+  isPlayingNow();
 };
 
 const calculateTime = (totalSeconds) => {
@@ -154,7 +174,7 @@ volume.addEventListener("click", () => {
 const displayMusicList = (list) => {
   for (let i = 0; i < list.length; i++) {
     let liTag = `
-    <li class="list-group-item d-flex justify-content-between align-items-center">
+    <li li-index='${i}' onclick="selectedMusic(this)" class="list-group-item d-flex justify-content-between align-items-center">
       <span>${list[i].getName()}</span>
       <span id="music-${i}" class="badge bg-primary rounded-pill"></span>
       <audio class ="music-${i}" src="mp3/${list[i].file}"></audio>
@@ -168,5 +188,25 @@ const displayMusicList = (list) => {
     liAudioTag.addEventListener("loadeddata", () => {
       liAudioDuration.innerText = calculateTime(liAudioTag.duration);
     });
+  }
+};
+
+const selectedMusic = (li) => {
+  const index = li.getAttribute("li-index");
+  player.index = index;
+  displayMusic(player.getMusic());
+  playMusic();
+  isPlayingNow();
+};
+
+const isPlayingNow = () => {
+  for (let li of ul.querySelectorAll("li")) {
+    if (li.classList.contains("playing")) {
+      li.classList.remove("playing");
+    }
+
+    if (li.getAttribute("li-index") == player.index) {
+      li.classList.add("playing");
+    }
   }
 };
